@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import com.example.demo.repository.ItemRepository;
 @Controller
 public class ItemController {
 	
+	@Autowired
 	private final CategoryRepository categoryRepository;
 	private final ItemRepository itemRepository;
 	
@@ -48,7 +50,7 @@ public class ItemController {
 		
 		model.addAttribute("items", itemList);
 
-		return "items";
+		return "G101";
 	}
 
 }

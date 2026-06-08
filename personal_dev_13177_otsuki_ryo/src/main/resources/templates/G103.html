@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>顧客情報入力画面</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<header th:replace="~{header}"></header>
+	<nav>
+		<a href="/items">全商品</a>
+		<a th:each="category:${categories}"
+		   th:href="@{/items(categoryId=${category.id})}"
+		   th:text="${category.name}"
+		   style="margin-right: 5px;"></a>
+		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
+	</nav>
+	<main>
+	<p>ご注文商品</p>
+	<table>
+		<tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>個数	</th>
+			<th>小計</tr>
+			<th> </th>
+		</tr>
+		<tr th:each = "item : ${@cart.items}">
+			<td th:text = "${item.id}"></td>				
+			<td th:text = "${item.name}"></td>
+			<td th:text = "${item.price} + 円"></td>
+			<td th:text = "${item.quantity}"></td>
+			<td th:text = "${item.price * item.quantity} + 円"></td>
+			<td>
+				<form action = "/cart/delete" method = "post">
+				<input type = "hidden" name = "itemId" th:value = "${item.id}">
+				<button>削除</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td colspan = "5" th:text = "総計： + ${@cart.getTotalPrice()} + 円"></td>
+			<td></td>
+		</tr>
+	</table><br>
+	<p>お客様情報入力</p>
+	<ul th:if = "${errorList}" class = "error">
+				<li th:each = "error:${errorList}" th:text = "${error}"></li>
+	</ul>
+	<form action = "/order/confirm" method = "post">
+		<table>
+			<tr>
+				<th>お名前</th>
+				<td>
+					<input type = "text" name = "name">
+				</td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td>
+					<input type = "text" name = "address">
+				</td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td>
+					<input type = "text" name = "tel">
+				</td>
+			</tr>
+			<tr>
+				<th>email</th>
+				<td>
+					<input type = "text" name = "email">
+				</td>
+			</tr>
+		</table>
+		<br>
+		<button>確認画面へ</button>
+	</form>
+	</main>
+</body>
+</html>

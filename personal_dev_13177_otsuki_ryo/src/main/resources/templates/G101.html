@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>商品一覧</title>
+<title>商品一覧画面</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
 	</nav>
 	<main>
-		<span th:text="${categoryMessage}" style="color: red"></span><br>
+		<span th:text="${message}" style="color: red"></span><br>
 		<table>
 			<tr>
 				<th>NO</th>
@@ -27,7 +27,7 @@
 			<tr th:each="item:${items}">
 				<td th:text="${item.id}"></td>	
 				<td th:text="${item.name}"></td>
-				<td th:text="${item.price}"></td>
+				<td th:text="${item.price} + 円"></td>
 				<td>
 					<form action="/cart/add" method="post">
 						<input type="hidden" name="itemId" th:value="${item.id}">

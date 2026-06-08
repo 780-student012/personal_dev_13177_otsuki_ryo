@@ -60,3 +60,10 @@ button {
 button:hover {
 	background-color: #f1b2b2;
 }
+/*エラーメッセージ
+  色・点を消す・配置*/
+ul.error{
+	color: red;
+	list-style: none;
+	padding-left: 0;
+}

@@ -15,7 +15,11 @@ public class Cart {
 
 	// フィールド（商品リスト）
 	private List<Item> items = new ArrayList<>();
-
+	
+	public Cart() {
+		
+	}
+	
 	// 商品リストゲッター
 	public List<Item> getItems() {
 		return items;
@@ -46,7 +50,7 @@ public class Cart {
 		// 存在した場合は、個数の更新を行う
 		if (existsItem == null) {
 			items.add(newItem);
-		} else {
+		} else {	
 			existsItem.setQuantity(
 					existsItem.getQuantity() + newItem.getQuantity());
 		}
