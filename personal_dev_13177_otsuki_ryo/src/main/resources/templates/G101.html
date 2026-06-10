@@ -7,17 +7,16 @@
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<nav>
-		<a href="/items">全商品</a>
-		<a th:each="category:${categories}"
-		   th:href="@{/items(categoryId=${category.id})}"
-		   th:text="${category.name}"
-		   style="margin-right: 5px;"></a>
+	<nav class="nav">
+		<a href="/items">全商品</a>		
+		<a href="/items?categoryId=1"style="margin-right: 5px;">本</a>
+		<a href="/items?categoryId=2"style="margin-right: 5px;">DVD</a>
+		<a href="/items?categoryId=3"style="margin-right: 5px;">ゲーム</a>
 		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
 	</nav>
 	<main>
 		<span th:text="${message}" style="color: red"></span><br>
-		<table>
+		<table border="1">
 			<tr>
 				<th>NO</th>
 				<th>商品名</th>

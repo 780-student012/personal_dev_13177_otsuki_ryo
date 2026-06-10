@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Item;
+import com.example.demo.model.Account;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ItemRepository;
 
@@ -19,17 +20,28 @@ public class ItemController {
 	@Autowired
 	private final CategoryRepository categoryRepository;
 	private final ItemRepository itemRepository;
+	private Account account;
+
 	
-	public ItemController(CategoryRepository categoryRepository, ItemRepository itemRepository) {
+	public ItemController(CategoryRepository categoryRepository, 
+						 ItemRepository itemRepository,
+						 Account account) {
 		super();
 		this.categoryRepository = categoryRepository;
 		this.itemRepository = itemRepository;
+		this.account = account;
 	 }
 	
 	//商品一覧画面の表示
 	@GetMapping("/items")
-	public String index(@RequestParam(defaultValue = "") Integer categoryId,
+	public String index(@RequestParam(required = false) Integer categoryId,
 						Model model) {
+		
+		//セッションに名前がない場合はログイン画面に返す
+		if(account.getName() == null) {
+			return "G001";
+		}
+		
 		
 		//カテゴリー一覧情報の取得
 		List<Category> categoryList = categoryRepository.findAll();
@@ -45,7 +57,7 @@ public class ItemController {
 		}
 		
 		if(itemList.size() == 0) {
-			model.addAttribute("categoryMessage", "該当する商品がありません");
+			model.addAttribute("message", "該当する商品がありません");
 		}
 		
 		model.addAttribute("items", itemList);

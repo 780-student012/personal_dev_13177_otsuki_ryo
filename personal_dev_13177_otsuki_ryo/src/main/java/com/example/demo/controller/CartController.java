@@ -19,6 +19,7 @@ public class CartController {
 	@Autowired
 	private final Cart cart;
 	private final ItemRepository itemRepository;
+
 	
 	public CartController(Cart cart, ItemRepository itemRepository) {
 		this.cart = cart;
@@ -28,7 +29,6 @@ public class CartController {
 	//カート画面の表示
 	@GetMapping("/cart")
 	public String index(Model model) {
-		
 
 		if(cart.getItems().size() == 0) {
 			model.addAttribute("message", "カートには何も入っていません");

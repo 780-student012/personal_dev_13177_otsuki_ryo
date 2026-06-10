@@ -7,17 +7,16 @@
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<nav>
+	<nav class="nav">
 		<a href="/items">全商品</a>
-		<a th:each="category:${categories}"
-		   th:href="@{/items(categoryId=${category.id})}"
-		   th:text="${category.name}"
-		   style="margin-right: 5px;"></a>
+		<a href="/items?categoryId=1"style="margin-right: 5px;">本</a>
+		<a href="/items?categoryId=2"style="margin-right: 5px;">DVD</a>
+		<a href="/items?categoryId=3"style="margin-right: 5px;">ゲーム</a>
 		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
 	</nav>
 	<main>
 		<p>ご注文商品</p>
-		<table>
+		<table border="1">
 			<tr>
 				<th>NO</th>
 				<th>商品名</th>
@@ -47,7 +46,7 @@
 		<br>
 		<p>お客様情報確認</p>
 		<form action = "/order" method = "post">
-			<table>
+			<table border="1">
 				<tr>
 					<th>お名前</th>
 					<td th:text = "${customer.name}">	</td>

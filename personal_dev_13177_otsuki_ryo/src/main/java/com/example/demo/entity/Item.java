@@ -26,6 +26,12 @@ public class Item {
 	private Integer quantity; // 数量
 	
 	
+	
+	public Item() {
+		
+	}
+
+
 	//ゲッターとセッター
 	public Integer getId() {
 		return id;

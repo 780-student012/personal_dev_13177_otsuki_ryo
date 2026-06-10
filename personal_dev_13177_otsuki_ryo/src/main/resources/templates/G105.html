@@ -2,9 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>注文完了画面</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
+	<header th:replace="~{header}"></header>
+	<nav class="nav">
+		<a href="/items">全商品</a>
+		<a href="/items?categoryId=1"style="margin-right: 5px;">本</a>
+		<a href="/items?categoryId=2"style="margin-right: 5px;">DVD</a>
+		<a href="/items?categoryId=3"style="margin-right: 5px;">ゲーム</a>
+		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
+	</nav>
+	<main>
+		<h3>ご注文ありがとうございました</h3>
+		お客様の注文番号は
+		<h3>
+			<span th:text = "${orderNumber}" style = "color: red;"></span>
+		</h3>
+		になります。
+	</main>
+	
 </body>
 </html>

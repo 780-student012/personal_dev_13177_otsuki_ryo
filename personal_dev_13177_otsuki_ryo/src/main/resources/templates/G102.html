@@ -7,29 +7,25 @@
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<nav>
+	<nav class="nav">
 		<a href="/items">全商品</a>
-		<a th:each="category:${categories}"
-		   th:href="@{/items(categoryId=${category.id})}"
-		   th:text="${category.name}"
-		   style="margin-right: 5px;"></a>
+		<a href="/items?categoryId=1"style="margin-right: 5px;">本</a>
+		<a href="/items?categoryId=2"style="margin-right: 5px;">DVD</a>
+		<a href="/items?categoryId=3"style="margin-right: 5px;">ゲーム</a>
 		<a href="/cart" style="padding-left: 10px;">カートを見る</a>
 	</nav>
 	
 	<main>
 		<p>カート商品</p>
-<!--		<p th:if = "${@cart.items.isEmpty()}">-->
-<!--			カートには何も入っていません-->
-<!--		</p>-->
 		<span th:text="${message}" style="color: red"></span><br>
-		<table>
+		<table border="1">
 			<tr>
 				<th>NO</th>
 				<th>商品名</th>
 				<th>値段</th>
 				<th>個数	</th>
 				<th>小計</tr>
-				<th> </th>
+				<th></th>
 			</tr>
 			<tr th:each = "item : ${@cart.items}">
 				<td th:text = "${item.id}"></td>				
